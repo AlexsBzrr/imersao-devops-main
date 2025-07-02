@@ -1,0 +1,11 @@
+services:
+  api:
+    build: . # constrói a imagem usando o Dockerfile
+    container_name: api-vendas # nome do container
+    ports:
+      - "8000:8000" # mapeamento de porta
+    volumes:
+      - .:/app
+    # O comando abaixo sobrescreve o CMD do Dockerfile para habilitar o --reload,
+    # que é ideal para o ambiente de desenvolvimento.
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
